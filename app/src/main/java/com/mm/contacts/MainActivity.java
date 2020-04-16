@@ -1,12 +1,15 @@
 package com.mm.contacts;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
-import com.mm.contacts.dummy.DummyContent;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.mm.contacts.Contact.ContactListContent;
 
 public class MainActivity extends AppCompatActivity
     implements ContactFragment.OnListFragmentInteractionListener{
@@ -24,7 +27,14 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentClickInteraction(ContactListContent.Contact item, int position) {
 
     }
+
+    @Override
+    public void onListFragmentLongClickInteraction(int position) {
+
+    }
+
+
 }
