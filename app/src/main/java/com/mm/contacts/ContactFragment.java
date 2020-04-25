@@ -4,42 +4,29 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableRow;
 
 import com.mm.contacts.Contact.ContactListContent;
 import com.mm.contacts.Contact.ContactListContent.Contact;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
+
 public class ContactFragment extends Fragment {
 
-    //dodane
     private MyContactRecyclerViewAdapter mRecyclerViewAdapter;
-
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
+
     public ContactFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static ContactFragment newInstance(int columnCount) {
         ContactFragment fragment = new ContactFragment();
@@ -63,16 +50,7 @@ public class ContactFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contact_list, container, false);
 
-        //dodane
-        if (view instanceof  RecyclerView){
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            mRecyclerViewAdapter = new MyContactRecyclerViewAdapter(ContactListContent.ITEMS, mListener);
-            recyclerView.setAdapter(mRecyclerViewAdapter);
-        }
-        // Set the adapter
-       /* if (view instanceof RecyclerView) {
+         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
@@ -80,11 +58,11 @@ public class ContactFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyContactRecyclerViewAdapter(DummyContent.ITEMS, mListener));
-        }*/
+             mRecyclerViewAdapter = new MyContactRecyclerViewAdapter(ContactListContent.ITEMS, mListener);
+            recyclerView.setAdapter(mRecyclerViewAdapter);
+        }
         return view;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -103,21 +81,17 @@ public class ContactFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name, dodane
-        void onListFragmentClickInteraction(Contact item, int position);
-        void onListFragmentLongClickInteraction(int position);
+    @Override
+    public void onResume() {
+        super.onResume();
+        notifyDataChange();
+    }
 
+
+    public interface OnListFragmentInteractionListener {
+        void onListFragmentClickInteraction(Contact item, View view);
+        void onListFragmentLongClickInteraction(Contact item);
+        void onDeleteButtonClick(int position);
     }
 
     public void notifyDataChange(){

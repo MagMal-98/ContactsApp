@@ -7,7 +7,20 @@
     <string name="add_contact">add contact</string>
     <string name="button">Button</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="avatar">Avatar</string>
+    <string name="delete_contact">Delete contact</string>
+    <string name="delete_question">Do you want to delete this contact?</string>
+    <string name="dialog_confirm">Yes</string>
+    <string name="dialog_cancel">No</string>
+    <string name="writename">Give me name, please!</string>
+    <string name="writebirthday">You have to add birth date!</string>
+    <string name="dateFormat">Date format: dd/mm/yyyy</string>
+    <string name="writephone">You need to write here phone number!</string>
+    <string name="phoneFormat">Phone number must have 9 digits</string>
+    <string name="call_dialog">Call to</string>
+    <string name="delete_dialog_tag">Delete Contact</string>
+    <string name="calling">Calling...</string>
 
 
 </resources>
